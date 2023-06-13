@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bb45784e2ce14cf3a6a781b930b7c4e9" Name="Diagram1">
+        <EntityTypeShape EntityType="DEModel.ActionPlan_" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEModel.Activities_" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEModel.ActivitiesInfo_" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEModel.Activity_" Width="1.5" PointX="3.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEModel.City_" Width="1.5" PointX="0.75" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEModel.Country_" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEModel.Directory_" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEModel.Event_" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEModel.Gender_" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEModel.JuryAndModerator_" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEModel.OrganizerParticipants_" Width="1.5" PointX="6" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEModel.Role_" Width="1.5" PointX="1.5" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEModel.User_" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
+        <AssociationConnector Association="DEModel.FK_ActionPlan__City_" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_ActionPlan__Event_" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_Activities__Activity_" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_ActivitiesInfo__Activities_" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_ActivitiesInfo__Activity_" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_ActivitiesInfo__JuryAndModerator_" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_ActivitiesInfo__JuryAndModerator_1" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_ActivitiesInfo__JuryAndModerator_2" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_ActivitiesInfo__JuryAndModerator_3" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_ActivitiesInfo__JuryAndModerator_4" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_ActivitiesInfo__JuryAndModerator_5" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_JuryAndModerator__Country_" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_OrganizerParticipants__Country_" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_JuryAndModerator__Directory_" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_JuryAndModerator__Event_" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_JuryAndModerator__Gender_" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_OrganizerParticipants__Gender_" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_JuryAndModerator__User_" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_OrganizerParticipants__User_" ManuallyRouted="false" />
+        <AssociationConnector Association="DEModel.FK_User__Role_" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

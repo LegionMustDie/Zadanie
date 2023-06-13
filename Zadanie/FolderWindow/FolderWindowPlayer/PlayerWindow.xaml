@@ -1,0 +1,38 @@
+﻿<Window x:Class="Zadanie.FolderWindow.FolderWindowPlayer.PlayerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zadanie.FolderWindow.FolderWindowPlayer"
+        mc:Ignorable="d"
+        Title="Окно участника" Height="450" Width="800"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="13*"/>
+            <ColumnDefinition Width="37*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Окно участника"
+               Style="{DynamicResource MainLabel}"
+               Grid.ColumnSpan="2"/>
+
+        <Label Content="В разработке!"
+               Style="{DynamicResource SupLabel}"
+               Grid.Column="1" 
+               Margin="0,217,0,108"
+               Grid.RowSpan="2"/>
+
+        <Button x:Name="btnBack"
+                Content="Назад"
+                Style="{DynamicResource SupButton}"
+                Grid.Row="1" 
+                Margin="20,83,20,82"
+                Click="btnBack_Click"/>
+    </Grid>
+</Window>

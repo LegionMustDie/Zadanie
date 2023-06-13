@@ -1,0 +1,105 @@
+﻿<Window x:Class="Zadanie.FolderWindow.WelcomeWindowSystem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zadanie.FolderWindow"
+        mc:Ignorable="d"
+        Title="Главное окно системы"
+        WindowStartupLocation="CenterScreen"
+        MaxHeight="570" MaxWidth="850"
+        Height="550" Width="800"
+        MinHeight="550" MinWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="289*"/>
+            <ColumnDefinition Width="511*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="61*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="136*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Главное окно системы"
+               Style="{DynamicResource MainLabel}" Grid.ColumnSpan="2"/>
+
+        <Button x:Name="btnAutorization"
+                Style="{DynamicResource MainButton}"
+                Content="Авторизация" 
+                Margin="35,11,0,0" 
+                Grid.Row="1"
+                Click="btnAutorization_Click" 
+                HorizontalAlignment="Left" 
+                Width="206" Height="50" 
+                VerticalAlignment="Top"/>
+
+        <Label Content="Направление:"
+               Style="{DynamicResource SupLabel}" 
+               Margin="118,18,0,0" 
+               Grid.Row="1" Grid.Column="1" 
+               Height="36" 
+               VerticalAlignment="Top" 
+               HorizontalAlignment="Left" 
+               Width="141"/>
+
+        <ComboBox x:Name="cbWay" 
+                  Margin="262,18,0,0" 
+                  Grid.Row="1" Grid.Column="1" 
+                  HorizontalAlignment="Left" 
+                  Width="214" 
+                  Height="36" 
+                  VerticalAlignment="Top"/>
+
+        <Label Content="Дата:"
+               Style="{DynamicResource SupLabel}" 
+               Margin="189,60,0,0" 
+               Grid.Row="1" 
+               Grid.Column="1" 
+               Height="36" 
+               VerticalAlignment="Top" 
+               HorizontalAlignment="Left" 
+               Width="70"/>
+
+        <DatePicker x:Name="dpDateEvent"
+                    Style="{DynamicResource DatePicker}" 
+                    Margin="262,60,0,0" 
+                    Grid.Row="1" 
+                    Grid.Column="1" 
+                    HorizontalAlignment="Left" 
+                    Width="214" 
+                    Height="36" 
+                    VerticalAlignment="Top"/>
+
+        <ListView x:Name="lvEventList"
+                  Grid.Row="2"
+                  Margin="5,5,5,5" Grid.ColumnSpan="2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Image/>
+                        <Label Content="Название"
+                               Style="{DynamicResource SupLabel}"/>
+                        <Label Content="Направление"
+                               Style="{DynamicResource SupLabel}"/>
+                        <Label Content="Дата"
+                               Style="{DynamicResource SupLabel}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+
+    </Grid>
+</Window>
