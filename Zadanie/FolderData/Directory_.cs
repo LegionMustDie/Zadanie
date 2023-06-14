@@ -17,12 +17,15 @@ namespace Zadanie.FolderData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Directory_()
         {
+            this.Event_ = new HashSet<Event_>();
             this.JuryAndModerator_ = new HashSet<JuryAndModerator_>();
         }
     
         public int IdDirectory { get; set; }
         public string NameDirectory { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Event_> Event_ { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JuryAndModerator_> JuryAndModerator_ { get; set; }
     }

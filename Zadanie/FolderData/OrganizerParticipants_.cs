@@ -23,7 +23,7 @@ namespace Zadanie.FolderData
         public Nullable<int> IdCountry { get; set; }
         public string NumberPhone { get; set; }
         public Nullable<int> IdUser { get; set; }
-        public string Photo { get; set; }
+        public byte[] Photo { get; set; }
         public Nullable<int> IdGender { get; set; }
     
         public virtual Country_ Country_ { get; set; }

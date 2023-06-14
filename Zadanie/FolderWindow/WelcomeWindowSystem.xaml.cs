@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Zadanie.FolderClass;
+using Zadanie.FolderData;
 
 namespace Zadanie.FolderWindow
 {
@@ -22,12 +24,37 @@ namespace Zadanie.FolderWindow
         public WelcomeWindowSystem()
         {
             InitializeComponent();
+            cbWay.ItemsSource = DBEntities.GetContext().Directory_.ToList();
+            lvEventList.ItemsSource = DBEntities.GetContext().ActionPlan_.ToList();
         }
 
         private void btnAutorization_Click(object sender, RoutedEventArgs e)
         {
             new AutorizationWindow().Show();
             Close();
+        }
+
+        private void cbWay_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbWay.SelectedItem is Directory_ directory)
+            {
+                lvEventList.ItemsSource = DBEntities.GetContext().ActionPlan_.Where(a => a.Event_.IdDirectory == directory.IdDirectory).ToList();
+                if (lvEventList.Items.Count <= 0)
+                {
+                    ClassMessageBox.ErrorMB("Нет мероприятий");
+                    lvEventList.ItemsSource = DBEntities.GetContext().ActionPlan_.ToList();
+                }
+            }
+        }
+
+        private void dpDateEvent_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lvEventList.ItemsSource = DBEntities.GetContext().ActionPlan_.Where(a => a.Date == dpDateEvent.SelectedDate).ToList();
+            if (lvEventList.Items.Count <= 0)
+            {
+                ClassMessageBox.ErrorMB("Нет мероприятий");
+                lvEventList.ItemsSource = DBEntities.GetContext().ActionPlan_.ToList();
+            }
         }
     }
 }

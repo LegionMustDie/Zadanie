@@ -50,7 +50,8 @@
                   HorizontalAlignment="Left" 
                   Width="214" 
                   Height="36" 
-                  VerticalAlignment="Top"/>
+                  VerticalAlignment="Top"
+                  SelectionChanged="cbWay_SelectionChanged"/>
 
         <Label Content="Дата:"
                Style="{DynamicResource SupLabel}" 
@@ -70,26 +71,32 @@
                     HorizontalAlignment="Left" 
                     Width="214" 
                     Height="36" 
-                    VerticalAlignment="Top"/>
+                    VerticalAlignment="Top"
+                    SelectedDateChanged="dpDateEvent_SelectedDateChanged"/>
 
         <ListView x:Name="lvEventList"
                   Grid.Row="2"
-                  Margin="5,5,5,5" Grid.ColumnSpan="2">
+                  Margin="5,5,5,5" Grid.ColumnSpan="2"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Width="Auto" Height="150"
+                          Margin="10"
+                          Background="AliceBlue">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="2*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Image/>
-                        <Label Content="Название"
+                        <Label Content="{Binding Event_.NameEvent}"
                                Style="{DynamicResource SupLabel}"/>
-                        <Label Content="Направление"
+                        <Label Content="{Binding Event_.Directory_.NameDirectory}"
+                               Grid.Row="1"
                                Style="{DynamicResource SupLabel}"/>
-                        <Label Content="Дата"
+                        <Label Content="{Binding Date}"
+                               Grid.Row="2"
                                Style="{DynamicResource SupLabel}"/>
                     </Grid>
                 </DataTemplate>

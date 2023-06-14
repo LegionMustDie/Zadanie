@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -70,7 +71,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FolderClass\ClassImage.cs" />
     <Compile Include="FolderClass\ClassMessageBox.cs" />
+    <Compile Include="FolderClass\ClassValidator.cs" />
+    <Compile Include="FolderClass\ClassVariable.cs" />
     <Compile Include="FolderData\ActionPlan_.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -140,6 +144,9 @@
     <Compile Include="FolderWindow\FolderWindowOrganizator\OrganizatorWindow.xaml.cs">
       <DependentUpon>OrganizatorWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FolderWindow\FolderWindowOrganizator\RegistrationJuryWindow.xaml.cs">
+      <DependentUpon>RegistrationJuryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FolderWindow\FolderWindowPlayer\PlayerWindow.xaml.cs">
       <DependentUpon>PlayerWindow.xaml</DependentUpon>
     </Compile>
@@ -197,6 +204,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FolderWindow\FolderWindowOrganizator\OrganizatorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FolderWindow\FolderWindowOrganizator\RegistrationJuryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

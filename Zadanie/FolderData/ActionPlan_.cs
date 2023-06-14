@@ -14,6 +14,12 @@ namespace Zadanie.FolderData
     
     public partial class ActionPlan_
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ActionPlan_()
+        {
+            this.Activities_ = new HashSet<Activities_>();
+        }
+    
         public int IdActionPlan { get; set; }
         public string NameAction { get; set; }
         public Nullable<int> IdEvent { get; set; }
@@ -23,5 +29,7 @@ namespace Zadanie.FolderData
     
         public virtual City_ City_ { get; set; }
         public virtual Event_ Event_ { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Activities_> Activities_ { get; set; }
     }
 }

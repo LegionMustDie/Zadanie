@@ -26,7 +26,7 @@ namespace Zadanie.FolderData
         public Nullable<int> Days { get; set; }
         public Nullable<int> winner { get; set; }
     
-        public virtual Activity_ Activity_ { get; set; }
+        public virtual ActionPlan_ ActionPlan_ { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ActivitiesInfo_> ActivitiesInfo_ { get; set; }
     }

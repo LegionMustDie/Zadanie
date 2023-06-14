@@ -23,9 +23,11 @@ namespace Zadanie.FolderData
     
         public int IdEvent { get; set; }
         public string NameEvent { get; set; }
+        public Nullable<int> IdDirectory { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ActionPlan_> ActionPlan_ { get; set; }
+        public virtual Directory_ Directory_ { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JuryAndModerator_> JuryAndModerator_ { get; set; }
     }

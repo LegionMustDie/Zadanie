@@ -80,6 +80,7 @@
           </Key>
           <Property Name="IdEvent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameEvent" Type="nvarchar" MaxLength="255" />
+          <Property Name="IdDirectory" Type="int" />
         </EntityType>
         <EntityType Name="Gender$">
           <Key>
@@ -104,7 +105,7 @@
           <Property Name="IdDirectory" Type="int" />
           <Property Name="IdEvent" Type="int" />
           <Property Name="IdUser" Type="int" />
-          <Property Name="Image" Type="nvarchar" MaxLength="255" />
+          <Property Name="Image" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="OrganizerParticipants$">
           <Key>
@@ -119,7 +120,7 @@
           <Property Name="IdCountry" Type="int" />
           <Property Name="NumberPhone" Type="nvarchar" MaxLength="255" />
           <Property Name="IdUser" Type="int" />
-          <Property Name="Photo" Type="nvarchar" MaxLength="255" />
+          <Property Name="Photo" Type="varbinary(max)" />
           <Property Name="IdGender" Type="int" />
         </EntityType>
         <EntityType Name="Role$">
@@ -172,12 +173,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Activities$_Activity$">
-          <End Role="Activity$" Type="Self.Activity$" Multiplicity="0..1" />
+        <Association Name="FK_Activities$_ActionPlan$">
+          <End Role="ActionPlan$" Type="Self.ActionPlan$" Multiplicity="0..1" />
           <End Role="Activities$" Type="Self.Activities$" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Activity$">
-              <PropertyRef Name="IdActivity" />
+            <Principal Role="ActionPlan$">
+              <PropertyRef Name="IdActionPlan" />
             </Principal>
             <Dependent Role="Activities$">
               <PropertyRef Name="IdActionPlan" />
@@ -277,6 +278,18 @@
             </Principal>
             <Dependent Role="ActivitiesInfo$">
               <PropertyRef Name="IdJuryFive" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event$_Directory$">
+          <End Role="Directory$" Type="Self.Directory$" Multiplicity="0..1" />
+          <End Role="Event$" Type="Self.Event$" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directory$">
+              <PropertyRef Name="IdDirectory" />
+            </Principal>
+            <Dependent Role="Event$">
+              <PropertyRef Name="IdDirectory" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -411,8 +424,8 @@
             <End Role="Event$" EntitySet="Event$" />
             <End Role="ActionPlan$" EntitySet="ActionPlan$" />
           </AssociationSet>
-          <AssociationSet Name="FK_Activities$_Activity$" Association="Self.FK_Activities$_Activity$">
-            <End Role="Activity$" EntitySet="Activity$" />
+          <AssociationSet Name="FK_Activities$_ActionPlan$" Association="Self.FK_Activities$_ActionPlan$">
+            <End Role="ActionPlan$" EntitySet="ActionPlan$" />
             <End Role="Activities$" EntitySet="Activities$" />
           </AssociationSet>
           <AssociationSet Name="FK_ActivitiesInfo$_Activities$" Association="Self.FK_ActivitiesInfo$_Activities$">
@@ -446,6 +459,10 @@
           <AssociationSet Name="FK_ActivitiesInfo$_JuryAndModerator$5" Association="Self.FK_ActivitiesInfo$_JuryAndModerator$5">
             <End Role="JuryAndModerator$" EntitySet="JuryAndModerator$" />
             <End Role="ActivitiesInfo$" EntitySet="ActivitiesInfo$" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event$_Directory$" Association="Self.FK_Event$_Directory$">
+            <End Role="Directory$" EntitySet="Directory$" />
+            <End Role="Event$" EntitySet="Event$" />
           </AssociationSet>
           <AssociationSet Name="FK_JuryAndModerator$_Country$" Association="Self.FK_JuryAndModerator$_Country$">
             <End Role="Country$" EntitySet="Country$" />
@@ -501,6 +518,7 @@
           <Property Name="IdCity" Type="Int32" />
           <NavigationProperty Name="City_" Relationship="Self.FK_ActionPlan__City_" FromRole="ActionPlan_" ToRole="City_" />
           <NavigationProperty Name="Event_" Relationship="Self.FK_ActionPlan__Event_" FromRole="ActionPlan_" ToRole="Event_" />
+          <NavigationProperty Name="Activities_" Relationship="Self.FK_Activities__ActionPlan_" FromRole="ActionPlan_" ToRole="Activities_" />
         </EntityType>
         <EntityType Name="Activities_">
           <Key>
@@ -511,7 +529,7 @@
           <Property Name="StartDate" Type="DateTime" Precision="3" />
           <Property Name="Days" Type="Int32" />
           <Property Name="winner" Type="Int32" />
-          <NavigationProperty Name="Activity_" Relationship="Self.FK_Activities__Activity_" FromRole="Activities_" ToRole="Activity_" />
+          <NavigationProperty Name="ActionPlan_" Relationship="Self.FK_Activities__ActionPlan_" FromRole="Activities_" ToRole="ActionPlan_" />
           <NavigationProperty Name="ActivitiesInfo_" Relationship="Self.FK_ActivitiesInfo__Activities_" FromRole="Activities_" ToRole="ActivitiesInfo_" />
         </EntityType>
         <EntityType Name="ActivitiesInfo_">
@@ -544,7 +562,6 @@
           <Property Name="NameActivity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Day" Type="Double" />
           <Property Name="StartTime" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Activities_" Relationship="Self.FK_Activities__Activity_" FromRole="Activity_" ToRole="Activities_" />
           <NavigationProperty Name="ActivitiesInfo_" Relationship="Self.FK_ActivitiesInfo__Activity_" FromRole="Activity_" ToRole="ActivitiesInfo_" />
         </EntityType>
         <EntityType Name="City_">
@@ -574,6 +591,7 @@
           </Key>
           <Property Name="IdDirectory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameDirectory" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Event_" Relationship="Self.FK_Event__Directory_" FromRole="Directory_" ToRole="Event_" />
           <NavigationProperty Name="JuryAndModerator_" Relationship="Self.FK_JuryAndModerator__Directory_" FromRole="Directory_" ToRole="JuryAndModerator_" />
         </EntityType>
         <EntityType Name="Event_">
@@ -582,7 +600,9 @@
           </Key>
           <Property Name="IdEvent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameEvent" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdDirectory" Type="Int32" />
           <NavigationProperty Name="ActionPlan_" Relationship="Self.FK_ActionPlan__Event_" FromRole="Event_" ToRole="ActionPlan_" />
+          <NavigationProperty Name="Directory_" Relationship="Self.FK_Event__Directory_" FromRole="Event_" ToRole="Directory_" />
           <NavigationProperty Name="JuryAndModerator_" Relationship="Self.FK_JuryAndModerator__Event_" FromRole="Event_" ToRole="JuryAndModerator_" />
         </EntityType>
         <EntityType Name="Gender_">
@@ -610,7 +630,7 @@
           <Property Name="IdDirectory" Type="Int32" />
           <Property Name="IdEvent" Type="Int32" />
           <Property Name="IdUser" Type="Int32" />
-          <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="ActivitiesInfo_" Relationship="Self.FK_ActivitiesInfo__JuryAndModerator_" FromRole="JuryAndModerator_" ToRole="ActivitiesInfo_" />
           <NavigationProperty Name="ActivitiesInfo_1" Relationship="Self.FK_ActivitiesInfo__JuryAndModerator_1" FromRole="JuryAndModerator_" ToRole="ActivitiesInfo_" />
           <NavigationProperty Name="ActivitiesInfo_2" Relationship="Self.FK_ActivitiesInfo__JuryAndModerator_2" FromRole="JuryAndModerator_" ToRole="ActivitiesInfo_" />
@@ -636,7 +656,7 @@
           <Property Name="IdCountry" Type="Int32" />
           <Property Name="NumberPhone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="IdUser" Type="Int32" />
-          <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="IdGender" Type="Int32" />
           <NavigationProperty Name="Country_" Relationship="Self.FK_OrganizerParticipants__Country_" FromRole="OrganizerParticipants_" ToRole="Country_" />
           <NavigationProperty Name="Gender_" Relationship="Self.FK_OrganizerParticipants__Gender_" FromRole="OrganizerParticipants_" ToRole="Gender_" />
@@ -696,12 +716,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Activities__Activity_">
-          <End Role="Activity_" Type="Self.Activity_" Multiplicity="0..1" />
+        <Association Name="FK_Activities__ActionPlan_">
+          <End Role="ActionPlan_" Type="Self.ActionPlan_" Multiplicity="0..1" />
           <End Role="Activities_" Type="Self.Activities_" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Activity_">
-              <PropertyRef Name="IdActivity" />
+            <Principal Role="ActionPlan_">
+              <PropertyRef Name="IdActionPlan" />
             </Principal>
             <Dependent Role="Activities_">
               <PropertyRef Name="IdActionPlan" />
@@ -828,6 +848,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Event__Directory_">
+          <End Role="Directory_" Type="Self.Directory_" Multiplicity="0..1" />
+          <End Role="Event_" Type="Self.Event_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directory_">
+              <PropertyRef Name="IdDirectory" />
+            </Principal>
+            <Dependent Role="Event_">
+              <PropertyRef Name="IdDirectory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_JuryAndModerator__Directory_">
           <End Role="Directory_" Type="Self.Directory_" Multiplicity="0..1" />
           <End Role="JuryAndModerator_" Type="Self.JuryAndModerator_" Multiplicity="*" />
@@ -935,8 +967,8 @@
             <End Role="Event_" EntitySet="Event_" />
             <End Role="ActionPlan_" EntitySet="ActionPlan_" />
           </AssociationSet>
-          <AssociationSet Name="FK_Activities__Activity_" Association="Self.FK_Activities__Activity_">
-            <End Role="Activity_" EntitySet="Activity_" />
+          <AssociationSet Name="FK_Activities__ActionPlan_" Association="Self.FK_Activities__ActionPlan_">
+            <End Role="ActionPlan_" EntitySet="ActionPlan_" />
             <End Role="Activities_" EntitySet="Activities_" />
           </AssociationSet>
           <AssociationSet Name="FK_ActivitiesInfo__Activities_" Association="Self.FK_ActivitiesInfo__Activities_">
@@ -978,6 +1010,10 @@
           <AssociationSet Name="FK_OrganizerParticipants__Country_" Association="Self.FK_OrganizerParticipants__Country_">
             <End Role="Country_" EntitySet="Country_" />
             <End Role="OrganizerParticipants_" EntitySet="OrganizerParticipants_" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event__Directory_" Association="Self.FK_Event__Directory_">
+            <End Role="Directory_" EntitySet="Directory_" />
+            <End Role="Event_" EntitySet="Event_" />
           </AssociationSet>
           <AssociationSet Name="FK_JuryAndModerator__Directory_" Association="Self.FK_JuryAndModerator__Directory_">
             <End Role="Directory_" EntitySet="Directory_" />
@@ -1095,6 +1131,7 @@
               <MappingFragment StoreEntitySet="Event$">
                 <ScalarProperty Name="IdEvent" ColumnName="IdEvent" />
                 <ScalarProperty Name="NameEvent" ColumnName="NameEvent" />
+                <ScalarProperty Name="IdDirectory" ColumnName="IdDirectory" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

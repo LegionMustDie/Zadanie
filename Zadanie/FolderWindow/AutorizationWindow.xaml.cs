@@ -66,7 +66,9 @@ namespace Zadanie.FolderWindow
                                 Close();
                                 break;
                             case 3:
-                                new OrganizatorWindow().Show();
+                                OrganizerParticipants_ organizer = DBEntities.GetContext().OrganizerParticipants_.FirstOrDefault(o => o.IdUser == user.IdUser);
+                                ClassVariable.IdOrganizer = organizer.IdOrganizerParticipants;
+                                new OrganizatorWindow(organizer).Show();
                                 Close();
                                 break;
                             case 4:

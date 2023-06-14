@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Zadanie.FolderClass;
+using Zadanie.FolderData;
 
 namespace Zadanie.FolderWindow.FolderWindowOrganizator
 {
@@ -20,9 +21,12 @@ namespace Zadanie.FolderWindow.FolderWindowOrganizator
     /// </summary>
     public partial class OrganizatorWindow : Window
     {
-        public OrganizatorWindow()
+        private OrganizerParticipants_ organizer;
+        public OrganizatorWindow(OrganizerParticipants_ organizer)
         {
             InitializeComponent();
+            this.organizer = organizer;
+            btnAddPhoto.Content = ClassImage.ConvertArrayToImage(organizer.Photo);
             WelcomeMessage();
         }
 
@@ -32,29 +36,27 @@ namespace Zadanie.FolderWindow.FolderWindowOrganizator
             Close();
         }
 
-        private void btnAddPhoto_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
 
         private void btnEvents_Click(object sender, RoutedEventArgs e)
         {
-
+            //Просто MessageBox
         }
 
         private void btnPlayers_Click(object sender, RoutedEventArgs e)
         {
-
+            //Просто MessageBox
         }
 
         private void btnJury_Click(object sender, RoutedEventArgs e)
         {
-
+            new RegistrationJuryWindow().Show();
+            Close();
         }
 
         private void btnProfile_Click(object sender, RoutedEventArgs e)
         {
-
+            //Просто MessageBox
         }
 
         /// <summary>
@@ -63,18 +65,22 @@ namespace Zadanie.FolderWindow.FolderWindowOrganizator
         private void WelcomeMessage()
         {
             var currentTimeinHours = DateTime.Now.Hour;
+            string organizerName = $"{organizer.FirstName} {organizer.MiddleName}";
+            string welcomeMessage = "";
             if (currentTimeinHours >= 9 && currentTimeinHours <= 11)
             {
-                lbWelcomeUser.Content = "Доброе утро!";
+                welcomeMessage = "Доброе утро!\n" + organizerName;
             }
             else if (currentTimeinHours > 11 && currentTimeinHours <= 18)
             {
-                lbWelcomeUser.Content = "Добрый день!";
+                welcomeMessage = "Добрый день!\n" + organizerName;
             }
             else if (currentTimeinHours > 18 && currentTimeinHours <= 23)
             {
-                lbWelcomeUser.Content = "Добрый вечер!";
+                welcomeMessage = "Добрый вечер!\n" + organizerName;
             }
+
+            lbWelcomeUser.Content = welcomeMessage;
         }
     }
 }
