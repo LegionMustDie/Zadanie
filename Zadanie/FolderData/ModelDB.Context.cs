@@ -19,6 +19,7 @@ namespace Zadanie.FolderData
             : base("name=DBEntities")
         {
         }
+
         private static DBEntities context;
         public static DBEntities GetContext()
         {

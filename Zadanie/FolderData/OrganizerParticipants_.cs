@@ -14,6 +14,12 @@ namespace Zadanie.FolderData
     
     public partial class OrganizerParticipants_
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public OrganizerParticipants_()
+        {
+            this.Activities_ = new HashSet<Activities_>();
+        }
+    
         public int IdOrganizerParticipants { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
@@ -26,6 +32,8 @@ namespace Zadanie.FolderData
         public string Photo { get; set; }
         public Nullable<int> IdGender { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Activities_> Activities_ { get; set; }
         public virtual Country_ Country_ { get; set; }
         public virtual Gender_ Gender_ { get; set; }
         public virtual User_ User_ { get; set; }

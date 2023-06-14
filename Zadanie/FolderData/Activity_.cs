@@ -17,7 +17,6 @@ namespace Zadanie.FolderData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Activity_()
         {
-            this.Activities_ = new HashSet<Activities_>();
             this.ActivitiesInfo_ = new HashSet<ActivitiesInfo_>();
         }
     
@@ -26,8 +25,6 @@ namespace Zadanie.FolderData
         public Nullable<double> Day { get; set; }
         public Nullable<System.DateTime> StartTime { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Activities_> Activities_ { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ActivitiesInfo_> ActivitiesInfo_ { get; set; }
     }
